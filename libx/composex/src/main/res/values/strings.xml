@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="retry">Retry</string>
+    <string name="search_field">Search Field</string>
+    <string name="search">Search</string>
+    <string name="icon">Icon</string>
+    <string name="item1">Item 1</string>
+    <string name="item2">Item 2</string>
+    <string name="unknown_error">Unknown error</string>
+</resources>
