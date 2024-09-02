@@ -24,10 +24,15 @@ jobs:
 
       - name: Publish vn.core.libx-ui.composex
         run: ./gradlew :libx:composex:publish
+        continue-on-error: true
+
+      - name: Publish vn.core.libx-ui.mdc
+        run: ./gradlew :libx:mdc:publish
+        continue-on-error: true
 
       - name: Sending report to Telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: 🚀 vn.core.libx-ui.composex new release published on Github Packages!
+          message: 🚀 Group artifact vn.core.libx-ui new release published on Github Packages!

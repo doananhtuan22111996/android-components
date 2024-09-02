@@ -27,3 +27,4 @@ jobs:
       - name: Build with Gradle
         run: |
           ./gradlew :libx:composex:build
+          ./gradlew :libx:mdc:build
