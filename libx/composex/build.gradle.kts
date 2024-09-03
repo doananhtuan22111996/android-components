@@ -57,7 +57,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.paging.compose.android)
+    implementation(libs.androidx.paging.compose)
     implementation(libs.androidx.ui.text.google.fonts)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
