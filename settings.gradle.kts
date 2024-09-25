@@ -1,8 +1,4 @@
-import java.net.URI
 import java.util.Properties
-
-include(":libx:mdc")
-
 
 
 pluginManagement {
@@ -49,6 +45,7 @@ fun getLocalProperty(propertyName: String): String {
     }
 }
 
-rootProject.name = "Components"
+rootProject.name = "android-components"
 include(":libx")
+include(":libx:mdc")
 include(":libx:composex")
