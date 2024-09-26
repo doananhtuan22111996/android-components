@@ -88,7 +88,7 @@ publishing {
             }
             groupId = "vn.core.libx-ui" // Replace with your GitHub username
             artifactId = "composex"
-            version = "1.0.1" // Set your desired version here
+            version = "1.0.2" // Set your desired version here
         }
     }
 }
