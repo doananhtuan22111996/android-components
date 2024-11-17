@@ -1,6 +1,5 @@
 import java.util.Properties
 
-
 pluginManagement {
     repositories {
         google {
@@ -19,9 +18,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        mavenLocal()
         maven {
-            val ghUsername = System.getenv("USERNAME") ?: getLocalProperty("USERNAME")
-            val ghPassword = System.getenv("TOKEN") ?: getLocalProperty("TOKEN")
+            val ghUsername = System.getenv("GH_USERNAME") ?: getLocalProperty("GH_USERNAME")
+            val ghPassword = System.getenv("GH_TOKEN") ?: getLocalProperty("GH_TOKEN")
             url = uri("https://maven.pkg.github.com/${ghUsername}/REPOSITORY")
             credentials {
                 username = ghUsername
@@ -29,8 +29,12 @@ dependencyResolutionManagement {
             }
         }
     }
+    versionCatalogs {
+        create("mobilex") {
+            from("vn.core.libs:versions:1.0.1")
+        }
+    }
 }
-
 
 fun getLocalProperty(propertyName: String): String {
     val localProperties = Properties().apply {

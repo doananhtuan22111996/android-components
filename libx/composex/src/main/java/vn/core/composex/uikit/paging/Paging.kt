@@ -10,13 +10,15 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
@@ -41,30 +43,14 @@ fun <T : BaseModel> Paging(
     val isPagingFooter =
         lazyPagingItems.loadState.append is LoadState.Loading || lazyPagingItems.loadState.append is LoadState.Error
 
+    var isRefreshing by remember { mutableStateOf(false) }
     val pullToRefreshState = rememberPullToRefreshState()
 
-    if (pullToRefreshState.isRefreshing) {
-        LaunchedEffect(key1 = true) {
-            lazyPagingItems.refresh()
-        }
-    }
-
     // Initial no need to refresh
-    if (lazyPagingItems.loadState.refresh is LoadState.Loading && lazyPagingItems.itemCount > 0) {
-        LaunchedEffect(key1 = true) {
-            pullToRefreshState.startRefresh()
-        }
-    } else {
-        LaunchedEffect(key1 = true) {
-            pullToRefreshState.endRefresh()
-        }
-    }
+    isRefreshing =
+        lazyPagingItems.loadState.refresh is LoadState.Loading && lazyPagingItems.itemCount > 0
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .nestedScroll(pullToRefreshState.nestedScrollConnection)
-    ) {
+    Box(modifier = Modifier.fillMaxSize()) {
 
         if (isInitialLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
@@ -82,35 +68,36 @@ fun <T : BaseModel> Paging(
             return@Box
         }
 
-        LazyColumn(
-            state = lazyListState,
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(16.dp)
-        ) {
-            items(
-                count = lazyPagingItems.itemCount,
-                key = lazyPagingItems.itemKey { it.hashCode() }) { index ->
-                Box(modifier = Modifier.animateItemPlacement()) {
-                    items(index)
-                }
-            }
-            if (isPagingFooter) {
-                footer ?: item {
+        PullToRefreshBox(modifier = Modifier.align(Alignment.TopCenter),
+            state = pullToRefreshState,
+            isRefreshing = isRefreshing,
+            onRefresh = {
+                isRefreshing = true
+                lazyPagingItems.refresh()
+            }) {
+            LazyColumn(
+                state = lazyListState,
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(16.dp)
+            ) {
+                items(count = lazyPagingItems.itemCount,
+                    key = lazyPagingItems.itemKey { it.hashCode() }) { index ->
                     Box(modifier = Modifier.animateItemPlacement()) {
-                        PagingFooter(
-                            loadState = lazyPagingItems.loadState.append,
-                            onRetry = onRetry ?: {
-                                lazyPagingItems.retry()
-                            })
+                        items(index)
+                    }
+                }
+                if (isPagingFooter) {
+                    footer ?: item {
+                        Box(modifier = Modifier.animateItemPlacement()) {
+                            PagingFooter(loadState = lazyPagingItems.loadState.append,
+                                onRetry = onRetry ?: {
+                                    lazyPagingItems.retry()
+                                })
+                        }
                     }
                 }
             }
         }
-
-        PullToRefreshContainer(
-            modifier = Modifier.align(Alignment.TopCenter),
-            state = pullToRefreshState,
-        )
     }
 }

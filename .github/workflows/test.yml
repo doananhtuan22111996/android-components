@@ -10,14 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      USERNAME: ${{ secrets.USERNAME }}
-      TOKEN: ${{ secrets.TOKEN }}
+      GH_USERNAME: ${{ secrets.GH_USERNAME }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_REPO_NAME: ${{ secrets.GH_REPO_NAME }}
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
