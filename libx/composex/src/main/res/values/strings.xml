@@ -7,4 +7,19 @@
     <string name="item1">Item 1</string>
     <string name="item2">Item 2</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="icon_close">Icon Close</string>
+    <string name="icon_check">Icon Check</string>
+    <string name="icon_back">Icon Back</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="_000_000_0000">000 000 0000</string>
+    <string name="visibility">Visibility</string>
+    <string name="visibilityoff">VisibilityOff</string>
+    <string name="reset_password">Reset Password?</string>
+    <string name="app_exception">App Exception</string>
+    <string name="accept">Accept</string>
+    <string name="example_email">example@example.com</string>
+    <string name="username_or_email">Username or email</string>
+    <string name="password">Password</string>
+    <string name="example_password">●●●●●●●●</string>
+    <string name="cancel">Cancel</string>
 </resources>

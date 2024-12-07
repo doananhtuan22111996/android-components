@@ -1,4 +1,4 @@
-package vn.core.composex.uikit
+package vn.core.composex.uikit.appBar
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
@@ -15,13 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import vn.core.libx.composex.R
-
-data class NavElement(
-    val icon: @Composable () -> Unit,
-    val label: @Composable () -> Unit,
-    val selected: Boolean = false,
-    val onClick: () -> Unit
-)
 
 @Composable
 fun AppBottomNavigationBar(items: List<NavElement>) {
