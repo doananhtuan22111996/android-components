@@ -1,4 +1,4 @@
-package vn.core.composex.uikit
+package vn.core.composex.uikit.appBar
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons

@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import vn.core.libx.composex.R
 
 @Composable
-fun SearchField(
+fun AppSearchField(
 	value: String,
 	onValueChange: (String) -> Unit,
 	enabled: Boolean = true,
@@ -47,5 +47,5 @@ fun SearchField(
 @Preview(showBackground = true)
 @Composable
 private fun SearchFieldPreview() {
-	SearchField(value = "", onValueChange = {})
+	AppSearchField(value = "", onValueChange = {})
 }
