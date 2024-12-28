@@ -35,6 +35,7 @@ fun <T : BaseModel> Paging(
     items: @Composable (index: Int) -> Unit = {},
     footer: @Composable (() -> Unit)? = null,
     onRetry: (() -> Unit)? = null,
+    contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     val isInitialLoading =
         lazyPagingItems.itemCount == 0 && lazyPagingItems.loadState.refresh is LoadState.Loading
@@ -79,7 +80,7 @@ fun <T : BaseModel> Paging(
                 state = lazyListState,
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                contentPadding = PaddingValues(16.dp)
+                contentPadding = contentPadding
             ) {
                 items(count = lazyPagingItems.itemCount,
                     key = lazyPagingItems.itemKey { it.hashCode() }) { index ->
