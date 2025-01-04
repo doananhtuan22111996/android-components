@@ -12,6 +12,9 @@ android {
 
 dependencies {
     implementation(libs.domain)
+
+    implementation(libs.coilCompose)
+    implementation(libs.coilNetwork)
 }
 
 publishing {

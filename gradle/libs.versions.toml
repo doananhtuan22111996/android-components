@@ -2,8 +2,13 @@
 corePlugins = "1.0.1"
 domain = "1.0.0"
 
+coilCompose = "3.0.4"
+
 [libraries]
 corePlugins = { group = "vn.core.libs", name = "plugins", version.ref = "corePlugins" }
 domain = { group = "vn.core.libs", name = "domain", version.ref = "domain" }
+
+coilCompose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilCompose" }
+coilNetwork = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coilCompose" }
 
 [plugins]
