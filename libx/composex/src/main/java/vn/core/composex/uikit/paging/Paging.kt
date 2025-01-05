@@ -35,7 +35,7 @@ fun <T : BaseModel> Paging(
     items: @Composable (index: Int) -> Unit = {},
     footer: @Composable (() -> Unit)? = null,
     onRetry: (() -> Unit)? = null,
-    contentPadding: PaddingValues = PaddingValues(0.dp)
+    contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
     val isInitialLoading =
         lazyPagingItems.itemCount == 0 && lazyPagingItems.loadState.refresh is LoadState.Loading
@@ -48,11 +48,12 @@ fun <T : BaseModel> Paging(
     val pullToRefreshState = rememberPullToRefreshState()
 
     // Initial no need to refresh
-    isRefreshing =
-        lazyPagingItems.loadState.refresh is LoadState.Loading && lazyPagingItems.itemCount > 0
+    val isLoading = lazyPagingItems.loadState.refresh is LoadState.Loading
+    val isPagingNotEmpty = lazyPagingItems.itemCount > 0
+    val isRefreshingWithoutInit = isLoading && isPagingNotEmpty
+    isRefreshing = isRefreshingWithoutInit
 
     Box(modifier = Modifier.fillMaxSize()) {
-
         if (isInitialLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             return@Box
@@ -61,7 +62,7 @@ fun <T : BaseModel> Paging(
         if (isInitialError) {
             val message = (lazyPagingItems.loadState.refresh as LoadState.Error).error.message
                 ?: stringResource(
-                    id = R.string.unknown_error
+                    id = R.string.unknown_error,
                 )
             Box(modifier = Modifier.align(Alignment.Center)) {
                 PagingRetry(message = message, onRetry = onRetry ?: { lazyPagingItems.retry() })
@@ -69,21 +70,25 @@ fun <T : BaseModel> Paging(
             return@Box
         }
 
-        PullToRefreshBox(modifier = Modifier.align(Alignment.TopCenter),
+        PullToRefreshBox(
+            modifier = Modifier.align(Alignment.TopCenter),
             state = pullToRefreshState,
             isRefreshing = isRefreshing,
             onRefresh = {
                 isRefreshing = true
                 lazyPagingItems.refresh()
-            }) {
+            },
+        ) {
             LazyColumn(
                 state = lazyListState,
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
-                contentPadding = contentPadding
+                contentPadding = contentPadding,
             ) {
-                items(count = lazyPagingItems.itemCount,
-                    key = lazyPagingItems.itemKey { it.hashCode() }) { index ->
+                items(
+                    count = lazyPagingItems.itemCount,
+                    key = lazyPagingItems.itemKey { it.hashCode() },
+                ) { index ->
                     Box(modifier = Modifier.animateItemPlacement()) {
                         items(index)
                     }
@@ -91,10 +96,12 @@ fun <T : BaseModel> Paging(
                 if (isPagingFooter) {
                     footer ?: item {
                         Box(modifier = Modifier.animateItemPlacement()) {
-                            PagingFooter(loadState = lazyPagingItems.loadState.append,
+                            PagingFooter(
+                                loadState = lazyPagingItems.loadState.append,
                                 onRetry = onRetry ?: {
                                     lazyPagingItems.retry()
-                                })
+                                },
+                            )
                         }
                     }
                 }

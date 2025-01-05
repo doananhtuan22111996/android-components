@@ -17,35 +17,37 @@ import vn.core.libx.composex.R
 
 @Composable
 fun AppSearchField(
-	value: String,
-	onValueChange: (String) -> Unit,
-	enabled: Boolean = true,
+    value: String,
+    onValueChange: (String) -> Unit,
+    enabled: Boolean = true,
 ) {
-	OutlinedTextField(
-		value = value,
-		onValueChange = onValueChange,
-		modifier = Modifier.fillMaxWidth(),
-		enabled = enabled,
-		isError = false,
-		leadingIcon = {
-			Icon(
-				imageVector = Icons.Filled.Search,
-				contentDescription = stringResource(R.string.search_field)
-			)
-		},
-		placeholder = {
-			Text(text = stringResource(R.string.search))
-		},
-		keyboardOptions = KeyboardOptions(
-			keyboardType = KeyboardType.Text, autoCorrect = true, imeAction = ImeAction.Search
-		),
-		singleLine = true,
-		maxLines = 1,
-	)
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = Modifier.fillMaxWidth(),
+        enabled = enabled,
+        isError = false,
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Filled.Search,
+                contentDescription = stringResource(R.string.search_field),
+            )
+        },
+        placeholder = {
+            Text(text = stringResource(R.string.search))
+        },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            autoCorrect = true,
+            imeAction = ImeAction.Search,
+        ),
+        singleLine = true,
+        maxLines = 1,
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun SearchFieldPreview() {
-	AppSearchField(value = "", onValueChange = {})
+    AppSearchField(value = "", onValueChange = {})
 }

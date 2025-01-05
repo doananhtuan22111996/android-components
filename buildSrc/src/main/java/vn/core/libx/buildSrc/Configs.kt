@@ -6,6 +6,6 @@ object Configs {
         const val GROUP_ID = "vn.core.libs"
         const val ARTIFACT_COMPOSE_ID = "compose"
         const val ARTIFACT_MDC_ID = "mdc"
-        const val VERSION = "1.0.4"
+        const val VERSION = "1.0.5"
     }
 }

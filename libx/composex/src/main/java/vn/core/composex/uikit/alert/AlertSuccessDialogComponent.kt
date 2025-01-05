@@ -28,13 +28,13 @@ fun AlertSuccessDialogComponent(
             Icon(
                 modifier = Modifier.size(96.dp),
                 imageVector = Icons.Filled.Check,
-                contentDescription = EMPTY_STRING
+                contentDescription = EMPTY_STRING,
             )
         },
         title = {
             Text(
                 text = title,
-                style = MaterialTheme.typography.headlineSmall
+                style = MaterialTheme.typography.headlineSmall,
             )
         },
         text = {

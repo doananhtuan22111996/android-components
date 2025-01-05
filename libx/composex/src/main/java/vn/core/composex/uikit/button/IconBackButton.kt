@@ -12,7 +12,8 @@ import vn.core.libx.composex.R
 fun IconBackButton(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
         Icon(
-            Icons.Filled.ArrowBackIosNew, contentDescription = stringResource(R.string.icon_back)
+            Icons.Filled.ArrowBackIosNew,
+            contentDescription = stringResource(R.string.icon_back),
         )
     }
 }

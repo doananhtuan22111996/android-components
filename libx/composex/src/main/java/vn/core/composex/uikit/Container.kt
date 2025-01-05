@@ -29,7 +29,8 @@ fun Container(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             AppBar(
-                title = appBarTitle, scrollBehavior = scrollBehavior,
+                title = appBarTitle,
+                scrollBehavior = scrollBehavior,
                 navigationIcon = navigationIcon,
                 actions = actions,
             )

@@ -27,13 +27,13 @@ fun AlertExceptionDialogComponent(
             Icon(
                 modifier = Modifier.size(96.dp),
                 imageVector = Icons.Filled.ErrorOutline,
-                contentDescription = EMPTY_STRING
+                contentDescription = EMPTY_STRING,
             )
         },
         title = {
             Text(
                 text = stringResource(R.string.app_exception),
-                style = MaterialTheme.typography.headlineSmall
+                style = MaterialTheme.typography.headlineSmall,
             )
         },
         text = {

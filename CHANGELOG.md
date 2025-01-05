@@ -1,4 +1,13 @@
 
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/doananhtuan22111996/android-components/compare/1.0.2...1.0.4) (2025-01-04)
+
+### Features
+
+* Add ComposeX components and Coil dependencies ([#12](https://github.com/doananhtuan22111996/android-components/issues/12))
+* Add AlertSuccessDialogComponent for success notifications ([#11](https://github.com/doananhtuan22111996/android-components/issues/11))
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/doananhtuan22111996/android-components/compare/1.0.0...1.0.2) (2024-12-28)
 
