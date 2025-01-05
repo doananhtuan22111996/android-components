@@ -13,20 +13,20 @@ import androidx.compose.material3.DisplayMode
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.rememberDatePickerState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import vn.core.composex.DOB_FORMAT
@@ -42,7 +42,7 @@ fun AppDatePicker(
     modifier: Modifier = Modifier,
     title: (@Composable () -> Unit)?,
     onValueChange: (String) -> Unit,
-    onValidator: ((value: String) -> String?)? = null
+    onValidator: ((value: String) -> String?)? = null,
 ) {
     var value by rememberSaveable { mutableStateOf(EMPTY_STRING) }
     var isError by rememberSaveable { mutableStateOf(false) }
@@ -62,9 +62,7 @@ fun AppDatePicker(
                 interactions.emit(interaction)
             }
 
-            override fun tryEmit(interaction: Interaction): Boolean {
-                return interactions.tryEmit(interaction)
-            }
+            override fun tryEmit(interaction: Interaction): Boolean = interactions.tryEmit(interaction)
         }
     }
 
@@ -79,7 +77,8 @@ fun AppDatePicker(
         value = value,
         label = {
             Text(
-                text = label, style = MaterialTheme.typography.labelMedium
+                text = label,
+                style = MaterialTheme.typography.labelMedium,
             )
         },
         onValueChange = { text ->
@@ -117,7 +116,7 @@ fun AppDatePicker(
                 state = dateState,
                 dateFormatter = remember { DatePickerDefaults.dateFormatter(selectedDateSkeleton = DOB_FORMAT) },
                 showModeToggle = false,
-                title = title
+                title = title,
             )
         }
     }

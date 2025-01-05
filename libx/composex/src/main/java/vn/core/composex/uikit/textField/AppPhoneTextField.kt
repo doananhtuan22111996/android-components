@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -11,11 +12,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.ui.Modifier
 import vn.core.composex.EMPTY_STRING
 import vn.core.libx.composex.R
 
@@ -25,7 +25,7 @@ fun PhoneTextField(
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
     onCountryCodeChange: () -> Unit,
-    onValidator: ((value: String) -> String?)? = null
+    onValidator: ((value: String) -> String?)? = null,
 ) {
     var value by rememberSaveable { mutableStateOf(EMPTY_STRING) }
     var isError by rememberSaveable { mutableStateOf(false) }
@@ -42,7 +42,7 @@ fun PhoneTextField(
         label = {
             Text(
                 text = stringResource(R.string.mobile_number),
-                style = MaterialTheme.typography.labelMedium
+                style = MaterialTheme.typography.labelMedium,
             )
         },
         onValueChange = { text ->
@@ -63,8 +63,10 @@ fun PhoneTextField(
             }
         },
         prefix = {
-            Text(text = countryCode,
-                modifier = Modifier.clickable { onCountryCodeChange() })
+            Text(
+                text = countryCode,
+                modifier = Modifier.clickable { onCountryCodeChange() },
+            )
         },
         singleLine = true,
         maxLines = 1,

@@ -3,6 +3,7 @@ package vn.core.composex.uikit.textField
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -10,10 +11,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.ui.Modifier
 import vn.core.composex.EMPTY_STRING
 
 @Composable
@@ -22,7 +22,7 @@ fun AppTextField(
     placeHolder: String,
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
-    onValidator: ((value: String) -> String?)? = null
+    onValidator: ((value: String) -> String?)? = null,
 ) {
     var value by rememberSaveable { mutableStateOf(EMPTY_STRING) }
     var isError by rememberSaveable { mutableStateOf(false) }
@@ -38,7 +38,8 @@ fun AppTextField(
         value = value,
         label = {
             Text(
-                text = label, style = MaterialTheme.typography.labelMedium
+                text = label,
+                style = MaterialTheme.typography.labelMedium,
             )
         },
         onValueChange = { text ->

@@ -2,9 +2,9 @@ package vn.core.composex.uikit.textField
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.ui.Modifier
 import vn.core.composex.EMPTY_STRING
 
@@ -21,7 +21,7 @@ fun AppTextOnlyReadField(
         label = {
             Text(
                 text = label,
-                style = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.onSurface)
+                style = MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.onSurface),
             )
         },
         onValueChange = { _ -> },

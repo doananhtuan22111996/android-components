@@ -30,7 +30,7 @@ fun PagingFooter(loadState: LoadState, onRetry: () -> Unit = {}) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp)
+            .padding(vertical = 8.dp),
     ) {
         if (loadState is LoadState.Loading) {
             PagingLoadMore(modifier = Modifier.align(Alignment.Center))
@@ -50,7 +50,8 @@ private fun PagingLoadMore(modifier: Modifier = Modifier) {
 @Composable
 fun PagingRetry(message: String, onRetry: () -> Unit = {}) {
     Column(
-        modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = message,

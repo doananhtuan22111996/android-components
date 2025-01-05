@@ -19,22 +19,28 @@ import vn.core.libx.composex.R
 @Composable
 fun AppBottomNavigationBar(items: List<NavElement>) {
     NavigationBar(containerColor = Color.Transparent) {
-        for (element in items) NavigationBarItem(
-            selected = element.selected, onClick = element.onClick,
-            icon = element.icon,
-            label = element.label,
-        )
+        for (element in items) {
+            NavigationBarItem(
+                selected = element.selected,
+                onClick = element.onClick,
+                icon = element.icon,
+                label = element.label,
+            )
+        }
     }
 }
 
 @Composable
 fun AppNavigationRailBar(items: List<NavElement>) {
     NavigationRail {
-        for (element in items) NavigationRailItem(
-            selected = element.selected, onClick = element.onClick,
-            icon = element.icon,
-            label = element.label,
-        )
+        for (element in items) {
+            NavigationRailItem(
+                selected = element.selected,
+                onClick = element.onClick,
+                icon = element.icon,
+                label = element.label,
+            )
+        }
     }
 }
 
@@ -57,7 +63,7 @@ fun NavigationBarPreview() {
                     icon = {
                         Icon(
                             Icons.Filled.AccountCircle,
-                            contentDescription = stringResource(R.string.icon)
+                            contentDescription = stringResource(R.string.icon),
                         )
                     },
                     label = {
@@ -82,7 +88,7 @@ fun NavigationBarPreview() {
                     icon = {
                         Icon(
                             Icons.Filled.AccountCircle,
-                            contentDescription = stringResource(R.string.icon)
+                            contentDescription = stringResource(R.string.icon),
                         )
                     },
                     label = {

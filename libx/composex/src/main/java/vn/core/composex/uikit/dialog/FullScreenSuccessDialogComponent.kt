@@ -24,20 +24,22 @@ import vn.core.libx.composex.R
 
 @Composable
 fun FullScreenSuccessDialogComponent(
-    onDismissRequest: (() -> Unit) = {}, content: @Composable () -> Unit
+    onDismissRequest: (() -> Unit) = {},
+    content: @Composable () -> Unit,
 ) {
     Dialog(
-        onDismissRequest = onDismissRequest, properties = DialogProperties(
+        onDismissRequest = onDismissRequest,
+        properties = DialogProperties(
             dismissOnBackPress = false,
             dismissOnClickOutside = false,
             usePlatformDefaultWidth = false,
-            decorFitsSystemWindows = true
-        )
+            decorFitsSystemWindows = true,
+        ),
     ) {
         Box(
             Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
+                .background(MaterialTheme.colorScheme.background),
         ) {
             IconButton(onClick = onDismissRequest, modifier = Modifier.align(Alignment.TopEnd)) {
                 Icon(Icons.Filled.Close, stringResource(R.string.icon_close))
@@ -45,14 +47,14 @@ fun FullScreenSuccessDialogComponent(
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Center,
             ) {
                 Icon(
                     Icons.Outlined.CheckCircleOutline,
                     stringResource(R.string.icon_check),
                     modifier = Modifier
                         .size(96.dp)
-                        .padding(vertical = 12.dp)
+                        .padding(vertical = 12.dp),
                 )
                 content()
             }

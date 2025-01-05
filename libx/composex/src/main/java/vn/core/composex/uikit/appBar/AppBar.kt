@@ -26,7 +26,7 @@ fun AppBar(
     title: String,
     navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
-    scrollBehavior: TopAppBarScrollBehavior? = null
+    scrollBehavior: TopAppBarScrollBehavior? = null,
 ) {
     TopAppBar(
         title = {
@@ -35,11 +35,13 @@ fun AppBar(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.titleLarge.copy(
-                    fontWeight = FontWeight.SemiBold
-                )
+                    fontWeight = FontWeight.SemiBold,
+                ),
             )
         },
-        navigationIcon = navigationIcon, actions = actions, scrollBehavior = scrollBehavior,
+        navigationIcon = navigationIcon,
+        actions = actions,
+        scrollBehavior = scrollBehavior,
     )
 }
 
@@ -49,7 +51,7 @@ fun MediumAppBar(
     title: String,
     navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
-    scrollBehavior: TopAppBarScrollBehavior? = null
+    scrollBehavior: TopAppBarScrollBehavior? = null,
 ) {
     MediumTopAppBar(
         title = {
@@ -58,11 +60,13 @@ fun MediumAppBar(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.titleLarge.copy(
-                    fontWeight = FontWeight.SemiBold
-                )
+                    fontWeight = FontWeight.SemiBold,
+                ),
             )
         },
-        navigationIcon = navigationIcon, actions = actions, scrollBehavior = scrollBehavior,
+        navigationIcon = navigationIcon,
+        actions = actions,
+        scrollBehavior = scrollBehavior,
     )
 }
 
@@ -72,7 +76,7 @@ fun LargeAppBar(
     title: String,
     navigationIcon: @Composable () -> Unit = {},
     actions: @Composable RowScope.() -> Unit = {},
-    scrollBehavior: TopAppBarScrollBehavior? = null
+    scrollBehavior: TopAppBarScrollBehavior? = null,
 ) {
     LargeTopAppBar(
         title = {
@@ -81,11 +85,13 @@ fun LargeAppBar(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.titleLarge.copy(
-                    fontWeight = FontWeight.SemiBold
-                )
+                    fontWeight = FontWeight.SemiBold,
+                ),
             )
         },
-        navigationIcon = navigationIcon, actions = actions, scrollBehavior = scrollBehavior,
+        navigationIcon = navigationIcon,
+        actions = actions,
+        scrollBehavior = scrollBehavior,
     )
 }
 
@@ -100,17 +106,18 @@ private fun AppBarPreview() {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = stringResource(
-                        id = R.string.icon
-                    )
+                        id = R.string.icon,
+                    ),
                 )
             }
         },
         actions = {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
-                    imageVector = Icons.Filled.Menu, contentDescription = stringResource(
-                        id = R.string.icon
-                    )
+                    imageVector = Icons.Filled.Menu,
+                    contentDescription = stringResource(
+                        id = R.string.icon,
+                    ),
                 )
             }
         },
